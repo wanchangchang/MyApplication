@@ -10,7 +10,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 
-import com.example.commenttool.XListView;
+import com.example.commenttool.View.XListView;
 
 
 public class AbleFragment extends Fragment implements  XListView.IXListViewListener,AdapterView.OnItemClickListener{

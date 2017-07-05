@@ -17,6 +17,7 @@ import android.widget.RadioGroup;
 import android.widget.Toast;
 
 import com.example.administrator.myapplication.Servicers.MyDataBaseSql;
+import com.example.administrator.myapplication.WebView.HTML5WebViewCustomAD;
 
 import java.text.DecimalFormat;
 
@@ -74,7 +75,7 @@ public class MainActivity extends FragmentActivity {
     public void addWorldClick(View v) {
 //        if (Latitude != null && Longitude != null) {
             Intent intent = new Intent();
-            intent.setClass(this, AddTextActivity.class);
+            intent.setClass(this, HTML5WebViewCustomAD.class);
             intent.putExtra("Latitude", 56);
             intent.putExtra("Longitude", 56);
             startActivity(intent);

@@ -4,10 +4,8 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.location.LocationManager;
-import android.os.Bundle;
 import android.os.Handler;
 import android.support.v7.app.AlertDialog;
-import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.EditText;
@@ -15,6 +13,8 @@ import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.example.administrator.myapplication.Application.BaseActivity;
 import com.example.administrator.myapplication.Model.DataForBase;
 import com.example.administrator.myapplication.Model.WeatherImage;
 import com.example.administrator.myapplication.Model.WeatherParamter;
@@ -23,7 +23,7 @@ import com.example.administrator.myapplication.Model.WeatherSource;
 import com.example.commenttool.Uitl.TimeUtil;
 import com.example.commenttool.source.BaseService;
 
-public class AddTextActivity extends AppCompatActivity {
+public class AddTextActivity extends BaseActivity {
     private EditText ed_think;
     private TextView tv_emotion;
     private String[] areas = new String[]{"开心", "愤怒", "忧愁", "快乐", "平静", "感恩", "无"};
@@ -47,11 +47,16 @@ public class AddTextActivity extends AppCompatActivity {
         }
     };
 
+
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
+    public void initView() {
         setContentView(R.layout.activity_add_text);
         intView();
+    }
+
+    @Override
+    public void initData() {
+
     }
 
     public void intView() {
