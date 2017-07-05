@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_name">commentTool</string>
+    <string name="xlistview_footer_hint_normal">查看更多</string>
+</resources>

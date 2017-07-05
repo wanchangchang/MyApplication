@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+
+    <FrameLayout
+        android:id="@+id/container"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"></FrameLayout>
+    <FrameLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:id="@+id/imv_addimg"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="10dp"
+            android:clickable="true"
+            android:onClick="addWorldClick"
+            android:src="@drawable/add" />
+    </FrameLayout>
+
+    <RadioGroup
+        android:id="@+id/activity_group_radioGroup"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:background="@null"
+        android:checkedButton="@+id/order_process"
+        android:gravity="center"
+        android:orientation="horizontal"
+        android:paddingBottom="3dp"
+        android:paddingTop="3dp">
+
+        <RadioButton
+            android:id="@+id/order_process"
+            android:layout_width="fill_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1.0"
+            android:button="@null"
+            android:drawableTop="@mipmap/ic_launcher"
+            android:gravity="center"
+            android:text="记录"
+            android:textSize="16sp" />
+
+        <RadioButton
+            android:id="@+id/order_query"
+            android:layout_width="fill_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1.0"
+            android:button="@null"
+            android:checked="false"
+            android:drawableTop="@mipmap/ic_launcher"
+            android:gravity="center"
+            android:text="总结"
+            android:textSize="16sp" />
+
+        <RadioButton
+            android:id="@+id/merchant_manager"
+            android:layout_width="fill_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1.0"
+            android:button="@null"
+            android:checked="false"
+            android:drawableTop="@mipmap/ic_launcher"
+            android:gravity="center"
+            android:text="畅想"
+            android:textSize="16sp" />
+
+        <RadioButton
+            android:id="@+id/setting"
+            android:layout_width="fill_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1.0"
+            android:button="@null"
+            android:checked="false"
+            android:drawableTop="@mipmap/ic_launcher"
+            android:gravity="center"
+            android:text="设置"
+            android:textSize="16sp" />
+    </RadioGroup>
+
+</RelativeLayout>
