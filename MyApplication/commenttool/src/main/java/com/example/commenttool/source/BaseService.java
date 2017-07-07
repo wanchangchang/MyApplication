@@ -38,24 +38,38 @@ public class BaseService {
 		return GsonUtil.jsonToObj(ANALYZE_ERROR, clzss);
 	}
 
-//	/**
-//	 * POST方式
-//	 *
-//	 * @param url
-//	 * @param content
-//	 * @param clzss
-//	 * @return
-//	 */
-//	protected static <T extends BaseResultModel> T postUrlNotEncypt(String url, String content, Class<T> clzss) {
-//		try {
-//			String data = HttpUtil.doPost(url, content);
-//			return (T) GsonUtil.jsonToObj(data, clzss);
-//		} catch (Exception e) {
-//			e.printStackTrace();
-//		}
-//		return GsonUtil.jsonToObj(ANALYZE_ERROR, clzss);
-//	}
-
+	/**
+	 * GET方式
+	 * @param url
+	 * @param
+	 * @param clzss
+	 * @return
+	 */
+	protected static <T extends BaseResultModel> T OkhttpGet(String url, Class<T> clzss) {
+		try {
+			String data = HttpUtil.okHttpGet(url);
+			return (T) GsonUtil.jsonToObj(data, clzss);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return GsonUtil.jsonToObj(ANALYZE_ERROR, clzss);
+	}
+	/**
+	 * POST方式
+	 * @param url
+	 * @param
+	 * @param clzss
+	 * @return
+	 */
+	protected static <T extends BaseResultModel> T OkhttpPost(String url,String content,Class<T> clzss) {
+		try {
+			String data = HttpUtil.okHttpGet(url);
+			return (T) GsonUtil.jsonToObj(data, clzss);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return GsonUtil.jsonToObj(ANALYZE_ERROR, clzss);
+	}
 	/**
 	 * Post方式
 	 *
@@ -63,7 +77,7 @@ public class BaseService {
 	 * @param clzss
 	 * @return
 	 */
-	protected static <T extends BaseResultModel> T postUrl(String url, Class<T> clzss) {
+	protected static <T extends BaseResultModel> T postUrl(String url,Class<T> clzss) {
 		try {
 			String data = HttpUtil.doPostAndEncypt(url);
 			return (T) GsonUtil.jsonToObj(data, clzss);

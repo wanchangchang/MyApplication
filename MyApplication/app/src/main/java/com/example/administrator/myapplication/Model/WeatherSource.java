@@ -25,6 +25,6 @@ public class WeatherSource extends BaseSource implements ISource {
 
     @Override
     public void CallSource() {
-        setResultModel(postUrl(PARKING_VERIFY_CAR_INFO,WeatherResult.class));
+        setResultModel(OkhttpGet(PARKING_VERIFY_CAR_INFO,WeatherResult.class));
     }
 }

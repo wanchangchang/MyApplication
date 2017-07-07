@@ -7,11 +7,20 @@
 package com.example.commenttool.Uitl;
 
 
+import android.util.Log;
+
+import com.squareup.okhttp.Call;
+import com.squareup.okhttp.OkHttpClient;
+import com.squareup.okhttp.Request;
+import com.squareup.okhttp.Response;
+
 import java.io.BufferedReader;
+import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.util.concurrent.TimeUnit;
 
 public class HttpUtil {
     // 每次更新版本时要修改
@@ -200,57 +209,100 @@ public class HttpUtil {
 //        return result;
 //    }
 
-//    protected static String doException(Exception e) {
-//        e.printStackTrace();
-//        int errorCode;
-//        System.out.println("出现异常啦!");
-//        String msg;
-//        System.out.println("异常详情：" + e.getMessage());
-//        if (e instanceof IOException) {
-//            System.out.println("IO异常!");
-//            msg = "当前网络不可用，请检查网络";//原来语句为msg ="IO异常"
-//            errorCode = HttpConstants.NET_ERROR_IO;
-//        }
-//        else if (e instanceof RuntimeException) {
-//            // 运行时异常
-//            System.out.println("运行异常!");
-//            msg = "运行异常";
-//            errorCode = HttpConstants.NET_ERROR_RUN;
-//        }
-//        else if (e instanceof java.net.UnknownHostException) {
-//            // 无网络连接
-//            System.out.println("网络异常!");
-//            msg = "网络异常";
-//            errorCode = HttpConstants.NET_ERROR_NONET;
-//        }
-//        else if (e instanceof java.net.SocketTimeoutException) {
-//            // 连接超时
-//            System.out.println("连接超时!");
-//            msg = "连接超时";
-//            errorCode = HttpConstants.NET_ERROR_TIMEOUT;
-//        }else if (e instanceof java.security.InvalidKeyException) {
-//            // 连接超时
-//            System.out.println("解密异常");
-//            msg = "登录超时,请重新登录";
-//            errorCode = HttpConstants.NET_ERROR_KEY_ERROR;
-//        }
-//        else {
-//            // 未知异常
-//            System.out.println("未知异常!");
-//            msg = "未知异常";
-//            errorCode = HttpConstants.NET_ERROR_UNKNOW;
-//        }
-//        return "{\"code\":" + errorCode + ",\"desc\":\"" + msg + "\"}";
-//    }
-
-    /**
-     * 除了200，其他都是不正常的返回
-     *
-     * @param responseCode
-     */
-    protected static String doResponseCode(int responseCode) {
-        return "{\"code\":" + responseCode + ",\"desc\":\"网络异常[" + responseCode + "]\"}";
+    protected static String doException(Exception e) {
+        e.printStackTrace();
+        int errorCode;
+        System.out.println("出现异常啦!");
+        String msg;
+        System.out.println("异常详情：" + e.getMessage());
+        if (e instanceof IOException) {
+            System.out.println("IO异常!");
+            msg = "当前网络不可用，请检查网络";//原来语句为msg ="IO异常"
+            errorCode = HttpConstants.NET_ERROR_IO;
+        }
+        else if (e instanceof RuntimeException) {
+            // 运行时异常
+            System.out.println("运行异常!");
+            msg = "运行异常";
+            errorCode = HttpConstants.NET_ERROR_RUN;
+        }
+        else if (e instanceof java.net.UnknownHostException) {
+            // 无网络连接
+            System.out.println("网络异常!");
+            msg = "网络异常";
+            errorCode = HttpConstants.NET_ERROR_NONET;
+        }
+        else if (e instanceof java.net.SocketTimeoutException) {
+            // 连接超时
+            System.out.println("连接超时!");
+            msg = "连接超时";
+            errorCode = HttpConstants.NET_ERROR_TIMEOUT;
+        }else if (e instanceof java.security.InvalidKeyException) {
+            // 连接超时
+            System.out.println("解密异常");
+            msg = "登录超时,请重新登录";
+            errorCode = HttpConstants.NET_ERROR_KEY_ERROR;
+        }
+        else {
+            // 未知异常
+            System.out.println("未知异常!");
+            msg = "未知异常";
+            errorCode = HttpConstants.NET_ERROR_UNKNOW;
+        }
+        return "{\"code\":" + errorCode + ",\"desc\":\"" + msg + "\"}";
     }
 
-
+    public static String okHttpGet(String Url){
+        String result =null;
+        try {
+            //拿到okHttpClicent对象
+            OkHttpClient okHttpClient = new OkHttpClient();
+            okHttpClient.setConnectTimeout(30, TimeUnit.MINUTES);
+            okHttpClient.setReadTimeout(30, TimeUnit.MINUTES);
+//        构建访问对象
+            Request.Builder builder = new Request.Builder();
+            Request request = builder.get().url(Url).build();
+//         将Request对象封装Call对象
+            Call call = okHttpClient.newCall(request);
+            try {
+                Response response =call.execute();
+                if (response.isSuccessful()){
+                    result=response.body().string();
+                    Log.d("Er",result);
+                }
+            }catch (Exception e){
+                doException(e);
+            }
+        }catch (Exception e){
+            doException(e);
+        }
+        return result;
+    }
+    public static String okHttpPost(String Url){
+        String result =null;
+        try {
+            //拿到okHttpClicent对象
+            OkHttpClient okHttpClient = new OkHttpClient();
+            okHttpClient.setConnectTimeout(30, TimeUnit.MINUTES);
+            okHttpClient.setReadTimeout(30, TimeUnit.MINUTES);
+//        构建访问对象
+            Request.Builder builder = new Request.Builder();
+            Request request = builder.get().url(Url).build();
+//         将Request对象封装Call对象
+            Call call = okHttpClient.newCall(request);
+            try {
+                Response response =call.execute();
+                if (response.isSuccessful()){
+                    result=response.body().string();
+                    Log.d("Er",result);
+                }
+                response.body().close();
+            }catch (Exception e){
+                doException(e);
+            }
+        }catch (Exception e){
+            doException(e);
+        }
+        return result;
+    }
 }

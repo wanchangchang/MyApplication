@@ -89,7 +89,7 @@ public class AddTextActivity extends BaseActivity {
     private void initResult(WeatherResult obj) {
         if (obj != null) {
             if (obj.getMsg().equals("Sucess")) {
-//                Toast.makeText(this, obj.getData().getNumtq(), Toast.LENGTH_LONG).show();
+                Toast.makeText(this, obj.getData().getNumtq(), Toast.LENGTH_LONG).show();
                 imv.setImageResource(WeatherImage.selectImage(obj.getData().getNumtq()));
                 tv_weater.setText(obj.getData().getTq()+" "+obj.getData().getQw()+getString(R.string.wendu));
             }
